@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pygame = "*"
 "pyside2" = "*"
+cython = "*"
 
 [dev-packages]
 "autopep8" = "*"

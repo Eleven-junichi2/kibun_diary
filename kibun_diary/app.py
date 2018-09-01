@@ -3,6 +3,10 @@ import datetime
 import calendar
 import pathlib
 import pickle
+import sys
+
+CALENDAR_DATAFILE_NAME = "calendar.pickle"
+DATA_DIR_NAME = "data"
 
 
 class FeelingColor(IntEnum):
@@ -43,8 +47,8 @@ class FeelingDiary:
 
 
 def data_dir() -> pathlib.Path:
-    path = pathlib.Path(__file__).parent
-    path = path / "data"
+    path = pathlib.Path(sys.argv[0]).parent
+    path = path / DATA_DIR_NAME
     return path
 
 
@@ -52,7 +56,7 @@ def open_feelingdiary() -> FeelingDiary:
     path = data_dir()
     if not path.is_dir():
         path.mkdir()
-    path = path / "calendar.pickle"
+    path = path / CALENDAR_DATAFILE_NAME
     if not path.is_file():
         with path.open(mode="wb+") as calendar_fileobj:
             feelingdiary = FeelingDiary()
@@ -65,7 +69,7 @@ def open_feelingdiary() -> FeelingDiary:
 
 def save_feelingdiary(feelingdiary: FeelingDiary):
     path = data_dir()
-    path = path / "calendar.pickle"
+    path = path / CALENDAR_DATAFILE_NAME
     with path.open(mode="wb") as calendar_fileobj:
         pickle.dump(feelingdiary, calendar_fileobj)
 

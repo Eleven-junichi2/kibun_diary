@@ -4,7 +4,8 @@ import calendar
 import pathlib
 import pickle
 
-
+CALENDAR_DATAFILE_NAME = "calendar.pickle"
+DATA_DIR_NAME = "data"
 
 
 class FeelingColor(IntEnum):
@@ -46,7 +47,7 @@ class FeelingDiary:
 
 def data_dir() -> pathlib.Path:
     path = pathlib.Path(__file__).parent
-    path = path / "data"
+    path = path / DATA_DIR_NAME
     return path
 
 
@@ -54,7 +55,7 @@ def open_feelingdiary() -> FeelingDiary:
     path = data_dir()
     if not path.is_dir():
         path.mkdir()
-    path = path / "calendar.pickle"
+    path = path / CALENDAR_DATAFILE_NAME
     if not path.is_file():
         with path.open(mode="wb+") as calendar_fileobj:
             feelingdiary = FeelingDiary()
@@ -67,7 +68,7 @@ def open_feelingdiary() -> FeelingDiary:
 
 def save_feelingdiary(feelingdiary: FeelingDiary):
     path = data_dir()
-    path = path / "calendar.pickle"
+    path = path / CALENDAR_DATAFILE_NAME
     with path.open(mode="wb") as calendar_fileobj:
         pickle.dump(feelingdiary, calendar_fileobj)
 
@@ -106,14 +107,8 @@ def main():
 
 
 def guimain():
-    import sys
-    from PySide2.QWidget import QApplication, QLabel
-
-    app = QApplication(sys.argv)
-    label = QLabel("<font color=#6495ed size=22px>Hello World!</font>")
-    label.show()
-    app.exec()
+    pass
 
 
 if __name__ == '__main__':
-    guimain()
+    main()
