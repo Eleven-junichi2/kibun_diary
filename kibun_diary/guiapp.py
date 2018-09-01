@@ -3,7 +3,6 @@ import datetime
 import calendar
 import pathlib
 import pickle
-import sys
 
 CALENDAR_DATAFILE_NAME = "calendar.pickle"
 DATA_DIR_NAME = "data"
@@ -47,7 +46,7 @@ class FeelingDiary:
 
 
 def data_dir() -> pathlib.Path:
-    path = pathlib.Path(sys.argv[0]).parent
+    path = pathlib.Path(__file__).parent
     path = path / DATA_DIR_NAME
     return path
 
@@ -105,6 +104,10 @@ def main():
         else:
             break
         save_feelingdiary(feelingdiary)
+
+
+def guimain():
+    pass
 
 
 if __name__ == '__main__':
