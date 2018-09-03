@@ -7,6 +7,7 @@ import sys
 
 CALENDAR_DATAFILE_NAME = "calendar.pickle"
 DATA_DIR_NAME = "data"
+__file__ = sys.argv[0]
 
 
 class FeelingColor(IntEnum):
@@ -47,7 +48,7 @@ class FeelingDiary:
 
 
 def data_dir() -> pathlib.Path:
-    path = pathlib.Path(sys.argv[0]).parent
+    path = pathlib.Path(__file__).parent
     path = path / DATA_DIR_NAME
     return path
 
